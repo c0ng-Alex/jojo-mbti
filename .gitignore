@@ -1,0 +1,21 @@
+# system
+.DS_Store
+Thumbs.db
+
+# editors
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# logs
+*.log
+
+# env
+.env
+.env.*
+
+# workspace tmp
+.screenshots/
+.trae-html-share-packages/
+.uploads/
