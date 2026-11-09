@@ -2131,7 +2131,7 @@ function renderTypesGrid() {
           const p = personalities[type];
           return `
             <div class="type-card ${g.key}" onclick="showTypeDetail('${type}')">
-              <div class="type-card-figure"><img src="assets/jojo/${type}.jpg" alt="${type} 人格形象" loading="lazy"></div>
+              <div class="type-card-figure"><img src="assets/jojo/${type}.webp" alt="${type} 人格形象" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='assets/jojo/${type}.jpg'"></div>
               <div class="type-card-code">${type}</div>
               <div class="type-card-name">${p.name}</div>
               <div class="type-card-desc">${p.subtitle}</div>
@@ -3178,7 +3178,7 @@ function showTypeDetail(type) {
             <button class="btn-restart" style="margin:0;padding:12px 24px;font-size:0.95em;" onclick="closeDetail()">看看其他类型</button>
           </div>
         </div>
-        <div class="detail-avatar-wrap"><img src="assets/jojo/${type}.jpg" alt="${type} 人格形象"></div>
+        <div class="detail-avatar-wrap"><img src="assets/jojo/${type}.webp" alt="${type} 人格形象" decoding="async" onerror="this.onerror=null;this.src='assets/jojo/${type}.jpg'"></div>
       </div>
     </div>
 
@@ -3491,7 +3491,7 @@ function showResult(type, dims) {
       <div class="type-code">${type}</div>
       <div class="type-name">${p.name}</div>
       <div class="type-subtitle">${p.subtitle}</div>
-      <div class="result-portrait-wrap"><img src="assets/jojo/${type}.jpg" alt="${type} 人格形象"></div>
+      <div class="result-portrait-wrap"><img src="assets/jojo/${type}.webp" alt="${type} 人格形象" decoding="async" onerror="this.onerror=null;this.src='assets/jojo/${type}.jpg'"></div>
     </div>
     
     <div class="dimension-bars fade-in">
