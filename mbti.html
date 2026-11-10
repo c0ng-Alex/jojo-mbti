@@ -4,23 +4,23 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>JOJO 画风 MBTI 十六型人格测试 | 测出你的替身人格</title>
-<meta name="description" content="30 道题，2 分钟，测出你是 16 型人格中的哪一位。全站 JoJo（荒木飞吕彦）画风立绘，看看你的替身长什么样。">
+<meta name="description" content="48 题快速版或 93 题完整版，5–15 分钟，测出你是 16 型人格中的哪一位。全站 JoJo（荒木飞吕彦）画风立绘，看看你的替身长什么样。">
 <meta name="theme-color" content="#0B0A0C">
 <link rel="image_src" href="https://c0ng-alex.github.io/jojo-mbti/assets/share-cover.jpg">
 <meta itemprop="name" content="JOJO 画风 MBTI 十六型人格测试">
-<meta itemprop="description" content="30 道题，2 分钟，测出你是 16 型人格中的哪一位。">
+<meta itemprop="description" content="48 题快速版或 93 题完整版，5–15 分钟出结果。">
 <meta itemprop="image" content="https://c0ng-alex.github.io/jojo-mbti/assets/share-cover.jpg">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="JOJO 风 MBTI">
 <meta property="og:title" content="测出你的替身人格 | JOJO 画风 MBTI 测试">
-<meta property="og:description" content="30 道题，2 分钟，测出你是 16 型人格中的哪一位。">
+<meta property="og:description" content="48 题快速版或 93 题完整版，5–15 分钟出结果。">
 <meta property="og:image" content="https://c0ng-alex.github.io/jojo-mbti/assets/share-cover.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:url" content="https://c0ng-alex.github.io/jojo-mbti/">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="测出你的替身人格 | JOJO 画风 MBTI 测试">
-<meta name="twitter:description" content="30 道题，2 分钟，测出你是 16 型人格中的哪一位。">
+<meta name="twitter:description" content="48 题快速版或 93 题完整版，5–15 分钟出结果。">
 <meta name="twitter:image" content="https://c0ng-alex.github.io/jojo-mbti/assets/share-cover.jpg">
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -1238,6 +1238,54 @@
     box-shadow: 4px 4px 0 var(--jj-magenta);
   }
 
+  /* === 五档量表 === */
+  .q-poles {
+    display: grid;
+    gap: 10px;
+    margin: 6px 0 24px;
+    text-align: left;
+  }
+  .q-pole {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 14px 16px;
+    background: #FBF6E9;
+    border: 3px solid var(--jj-ink);
+    box-shadow: 4px 4px 0 rgba(0,0,0,0.35);
+    font-weight: 700;
+    line-height: 1.5;
+  }
+  .q-pole .pole-tag {
+    flex: none;
+    background: var(--jj-ink);
+    color: var(--jj-gold);
+    font-weight: 900;
+    font-style: italic;
+    padding: 1px 9px;
+    font-size: 0.9em;
+  }
+  .options.likert {
+    flex-direction: row;
+    gap: 8px;
+  }
+  .options.likert .option-btn {
+    flex: 1 1 0;
+    padding: 16px 4px;
+    font-size: 0.85em;
+    text-align: center;
+    line-height: 1.35;
+  }
+  .options.likert .option-btn.selected {
+    background: var(--jj-gold) !important;
+    color: var(--jj-ink) !important;
+  }
+  @media (max-width: 520px) {
+    .options.likert { gap: 5px; }
+    .options.likert .option-btn { font-size: 0.7em; padding: 12px 2px; }
+    .q-pole { padding: 11px 12px; font-size: 0.92em; }
+  }
+
   /* ---- 结果页 ---- */
   .result-header {
     background: var(--jj-cream) !important;
@@ -1651,7 +1699,7 @@
 const questions_48 = [
   // === E vs I (外向 vs 内向) ===
   { q: '在一个热闹的聚会后，你通常会：', options: ['感到精力充沛，还想继续社交', '感到疲惫，需要独处来恢复精力'], dim: 'EI', val: 'E' },
-  { q: '你更喜欢的工作环境是：', options: ['开放的、鼓励团队交流的办公室', '安静的、可以专注独立工作的空间'], dim: 'EI', val: 'I' },
+  { q: '你更喜欢的工作环境是：', options: ['开放的、鼓励团队交流的办公室', '安静的、可以专注独立工作的空间'], dim: 'EI', val: 'E' },
   { q: '当你有一个想法时，你倾向于：', options: ['找别人讨论，在交流中完善想法', '先自己仔细思考，成熟后再分享'], dim: 'EI', val: 'E' },
   { q: '周末的时候，你更愿意：', options: ['和朋友出去玩，参加各种活动', '待在家里看书、看电影或独处'], dim: 'EI', val: 'E' },
   { q: '在团队中，你通常是：', options: ['积极发言，带动讨论气氛', '倾听为主，深思熟虑后再发言'], dim: 'EI', val: 'E' },
@@ -1743,7 +1791,7 @@ const questions_93 = [
   { q: '你觉得自己是个：', options: ['脚踏实地的人', '充满想象力的人'], dim: 'SN', val: 'S' },
   { q: '学新东西时你喜欢：', options: ['先动手做，边做边学', '先看理论，理解原理'], dim: 'SN', val: 'S' },
   { q: '你更欣赏：', options: ['技术熟练的工匠', '创意十足的设计师'], dim: 'SN', val: 'S' },
-  { q: '面对未来，你会：', options: ['做好计划一步步走', '顺其自然，船到桥头自然直'], dim: 'SN', val: 'S' },
+  { q: '你更看重一份工作里的：', options: ['稳定清晰的流程和确定性', '探索未知方向的可能性'], dim: 'SN', val: 'S' },
   { q: '你觉得"也许"这个词：', options: ['不够确定，不踏实', '充满可能性，很有意思'], dim: 'SN', val: 'S' },
   { q: '读完一本书，你会：', options: ['记得具体情节和细节', '记得整体感觉和启示'], dim: 'SN', val: 'S' },
   { q: '你更容易被什么吸引：', options: ['实用的功能和设计', '漂亮的概念和创意'], dim: 'SN', val: 'S' },
@@ -2040,7 +2088,7 @@ const personalities = {
 // ============================================
 let currentQuestion = 0;
 let answers = new Array(currentQuestions.length).fill(null);
-const STORAGE_KEY_BASE = 'mbti_test_progress_';
+const STORAGE_KEY_BASE = 'mbti_test_progress_v2_';
 const getStorageKey = () => STORAGE_KEY_BASE + quizMode;
 
 // === 初始化 ===
@@ -3421,16 +3469,43 @@ function showQuestion() {
   const questionBox = document.getElementById('question-box');
   questionBox.className = 'question-box fade-in';
   document.getElementById('current-q').textContent = currentQuestion + 1;
-  document.getElementById('question-text').textContent = q.q;
-  
+
+  // 题干 + A/B 两极陈述
+  const questionText = document.getElementById('question-text');
+  questionText.innerHTML = '';
+
+  const prompt = document.createElement('div');
+  prompt.className = 'q-prompt';
+  prompt.textContent = q.q;
+  questionText.appendChild(prompt);
+
+  const poles = document.createElement('div');
+  poles.className = 'q-poles';
+  [String(q.options[0]), String(q.options[1])].forEach((txt, idx) => {
+    const row = document.createElement('div');
+    row.className = 'q-pole';
+    const tag = document.createElement('span');
+    tag.className = 'pole-tag';
+    tag.textContent = idx === 0 ? 'A' : 'B';
+    const body = document.createElement('span');
+    body.textContent = txt;
+    row.appendChild(tag);
+    row.appendChild(body);
+    poles.appendChild(row);
+  });
+  questionText.appendChild(poles);
+
   document.getElementById('progress-bar').style.width = ((currentQuestion + 1) / currentQuestions.length * 100) + '%';
-  
+
+  // 五档选项：0=非常A 1=偏向A 2=都不像 3=偏向B 4=非常B
   const optionsDiv = document.getElementById('options');
+  optionsDiv.className = 'options likert';
   optionsDiv.innerHTML = '';
-  q.options.forEach((opt, i) => {
+  const likertLabels = ['非常 A', '偏向 A', '都不像', '偏向 B', '非常 B'];
+  likertLabels.forEach((label, i) => {
     const btn = document.createElement('button');
     btn.className = 'option-btn';
-    btn.textContent = opt;
+    btn.textContent = label;
     btn.onclick = () => selectOption(i);
     if (answers[currentQuestion] === i) {
       btn.classList.add('selected');
@@ -3474,25 +3549,32 @@ function prevQuestion() {
 function calculateResult() {
   clearSavedProgress();
   let scores = { E: 0, I: 0, S: 0, N: 0, T: 0, F: 0, J: 0, P: 0 };
-  
+
+  // 五档权重：0=非常A(+2) 1=偏向A(+1) 2=都不像(0) 3=偏向B(-1) 4=非常B(-2)
+  const WEIGHTS = [2, 1, 0, -1, -2];
+
   currentQuestions.forEach((q, i) => {
-    if (answers[i] !== null) {
-      const selectedVal = answers[i] === 0 ? q.val : (q.val === q.dim[0] ? q.dim[1] : q.dim[0]);
-      scores[selectedVal]++;
-    }
+    const ans = answers[i];
+    if (ans === null || ans === undefined) return;
+    const aLetter = q.val;                                    // A 选项对应字母
+    const bLetter = q.dim[0] === aLetter ? q.dim[1] : q.dim[0];
+    const w = WEIGHTS[ans] || 0;
+    if (w > 0) scores[aLetter] += w;
+    else if (w < 0) scores[bLetter] += -w;
   });
-  
-  const ePercent = Math.round(scores.E / (scores.E + scores.I) * 100);
-  const sPercent = Math.round(scores.S / (scores.S + scores.N) * 100);
-  const tPercent = Math.round(scores.T / (scores.T + scores.F) * 100);
-  const jPercent = Math.round(scores.J / (scores.J + scores.P) * 100);
-  
+
+  const pct = (l, r) => (l + r === 0 ? 50 : Math.round(l / (l + r) * 100));
+  const ePercent = pct(scores.E, scores.I);
+  const sPercent = pct(scores.S, scores.N);
+  const tPercent = pct(scores.T, scores.F);
+  const jPercent = pct(scores.J, scores.P);
+
   const resultType = 
-    (ePercent >= 50 ? 'E' : 'I') +
-    (sPercent >= 50 ? 'S' : 'N') +
-    (tPercent >= 50 ? 'T' : 'F') +
-    (jPercent >= 50 ? 'J' : 'P');
-  
+    (ePercent > 50 ? 'E' : ePercent < 50 ? 'I' : (scores.E >= scores.I ? 'E' : 'I')) +
+    (sPercent > 50 ? 'S' : sPercent < 50 ? 'N' : (scores.S >= scores.N ? 'S' : 'N')) +
+    (tPercent > 50 ? 'T' : tPercent < 50 ? 'F' : (scores.T >= scores.F ? 'T' : 'F')) +
+    (jPercent > 50 ? 'J' : jPercent < 50 ? 'P' : (scores.J >= scores.P ? 'J' : 'P'));
+
   showResult(resultType, { ePercent, sPercent, tPercent, jPercent });
 }
 
