@@ -1861,6 +1861,28 @@ const questions_93 = [
 // 当前使用的题库和模式
 let currentQuestions = questions_48;
 let quizMode = 'standard'; // 'standard' = 48题, 'full' = 93题
+let questionOrder = [];     // 显示位置 → 原始题库下标的映射（乱序）
+
+function _bankFor(mode) { return mode === 'full' ? questions_93 : questions_48; }
+
+// Fisher–Yates 洗牌
+function _fyShuffle(arr) {
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+  return arr;
+}
+
+// 根据打乱顺序重建 currentQuestions（断点续答时恢复同一份乱序）
+function _applyOrder(mode, order) {
+  const bank = _bankFor(mode);
+  if (!Array.isArray(order) || order.length !== bank.length) {
+    order = _fyShuffle(bank.map((_, i) => i));
+  }
+  questionOrder = order;
+  currentQuestions = order.map(i => bank[i]);
+}
 
 // ============================================
 // 16种人格类型的详细数据
@@ -2103,6 +2125,7 @@ function saveProgress() {
     currentQuestion: currentQuestion,
     answers: answers,
     quizMode: quizMode,
+    questionOrder: questionOrder,
     timestamp: Date.now()
   };
   localStorage.setItem(getStorageKey(), JSON.stringify(data));
@@ -2119,7 +2142,7 @@ function loadProgress() {
 function loadProgressForMode(mode) {
   const data = readProgress(mode);
   quizMode = mode;
-  currentQuestions = mode === 'full' ? questions_93 : questions_48;
+  _applyOrder(mode, data && data.order);
   if (data) {
     answers = data.answers;
     currentQuestion = data.currentQuestion;
@@ -2142,7 +2165,8 @@ function readProgress(mode) {
     const ans = data.answers.slice(0, total);
     while (ans.length < total) ans.push(null);
     const cur = Math.min(Math.max(0, data.currentQuestion || 0), total - 1);
-    return { answers: ans, currentQuestion: cur, count: ans.filter(a => a !== null).length };
+    const order = Array.isArray(data.questionOrder) && data.questionOrder.length === total ? data.questionOrder : null;
+    return { answers: ans, currentQuestion: cur, count: ans.filter(a => a !== null).length, order };
   } catch(e) {
     return null;
   }
@@ -2165,8 +2189,8 @@ function updateResumeBanner() {
   const banner = document.getElementById('resume-banner');
   if (foundMode) {
     quizMode = foundMode;
-    currentQuestions = foundMode === 'full' ? questions_93 : questions_48;
     const d = readProgress(foundMode);
+    _applyOrder(foundMode, d && d.order);
     answers = d ? d.answers : new Array(currentQuestions.length).fill(null);
     currentQuestion = d ? d.currentQuestion : 0;
     const modeName = foundMode === 'full' ? '标准测试（93题）' : '快速测试（48题）';
@@ -3414,7 +3438,7 @@ document.addEventListener('keydown', e => {
 // === 测试页面导航 ===
 function startTest(mode) {
   quizMode = mode || 'standard';
-  currentQuestions = quizMode === 'full' ? questions_93 : questions_48;
+  _applyOrder(quizMode, null);   // 每次新开测试都重新洗牌
   currentQuestion = 0;
   answers = new Array(currentQuestions.length).fill(null);
   clearSavedProgress();
